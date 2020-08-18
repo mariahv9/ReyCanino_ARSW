@@ -14,6 +14,8 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ## Historias de usuario
 
+![Casos de Uso](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Blank%20Diagram.jpeg)
+
 ### Añadir producto 
 
 * Como **cliente**.
@@ -80,8 +82,11 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 * Quiero **cambiar el estado de las citas**.
 * Para informar en tiempo real el estado de citas en la plataforma.
 
+## Reviewed
+Diego Alfonso Prieto Torres
 
+## Authors
 
-
-
-
+* **Miguel Angel Castellanos Salamanca** - [PurpleBooth](https://github.com/macastellanossalamanca)
+* **Maria Fernanda Hernandez Vargas** - [PurpleBooth](https://github.com/mariahv9)
+Student of Systems Engineering of Escuela Colombiana de Ingenieria Julio Garavito 
