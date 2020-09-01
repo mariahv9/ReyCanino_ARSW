@@ -1,5 +1,6 @@
 # Rey Canino
 ![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.jpeg)
+
 ## Integrantes
 * Miguel Angel Castellanos Salamanca
 * Maria Fernanda Hernandez Vargas
@@ -14,7 +15,7 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ## Historias de usuario
 
-![Casos de Uso](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Blank%20Diagram.jpeg)
+![Casos de Uso](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/CasosdeUso.png)
 
 ### Añadir producto 
 
@@ -81,6 +82,27 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 * Como **administrador**.
 * Quiero **cambiar el estado de las citas**.
 * Para informar en tiempo real el estado de citas en la plataforma.
+
+## Diagrama de clases
+
+![Diagrama Clases](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/DiagramaClases.png)
+
+## Diagrama de Base de Datos
+
+![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Base%20de%20Datos.png)
+
+## Vistas
+* Inicio
+
+![Vista Inicio](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaInicio.png)
+
+* Administrador
+
+![Vista Administador](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaAdmin.png)
+
+* Cliente
+
+![Vista Cliente](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaCliente.png)
 
 ## Reviewed
 Diego Alfonso Prieto Torres
