@@ -97,6 +97,14 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Base%20de%20Datos.png)
 
+## Diagrama de Secuencia
+
+![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/secuencia.png)
+
+## Diagrama de Componentes
+
+![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Componentes.png)
+
 ## Vistas
 * Inicio
 
