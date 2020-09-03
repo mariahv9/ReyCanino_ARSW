@@ -17,35 +17,35 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ![Casos de Uso](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/CasosdeUso.png)
 
-### Añadir producto 
+### Consultar disponibilidad de paseo
 
 * Como **cliente**.
-* Quiero **añadir un producto** deseado al carrito de compras.
-* Para finalmente adquirirlo.
+* Quiero **consultar la disponibilidad de paseos**.
+* Para poder agendar.
 
-### Eliminar producto
-
-* Como **cliente**.
-* Quiero **eliminar un producto** que ya no me interesa.
-* Para que no sea considerado al efectuar el pago de la compra.
-
-### Finalizar compra
+### Agendar paseo
 
 * Como **cliente**.
-* Quiero **finalizar mi compra**.
-* Para poder revisar el detalle de cobro de mi cuenta (emisión de factura electrónica).
+* Quiero **agendar el paseo**.
+* Para poder tomar el servicio.
 
-### Pagar cuenta
+### Consultar paseo agendado
 
 * Como **cliente**.
-* Quiero **pagar la cuenta**.
-* Para poder finalizar el proceso de compra.
+* Quiero **consultar paseo agendado**.
+* Para verificar que todo esté en orden.
+
+### Cancelar paseo
+
+* Como **cliente**.
+* Quiero **cancelar un paseo** agendado.
+* Para poder liberar ese espacio.
 
 ### Consultar disponibilidad de cita
 
 * Como **cliente**.
 * Quiero **consultar la disponibilidad de citas**.
-* Para poder agendar.
+* Para verificar que todo este en orden.
 
 ### Agendar cita peluquería
 
@@ -65,11 +65,17 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 * Quiero **cancelar una cita** agendada.
 * Para poder liberar ese espacio.
 
-### Procesar pedido
+### Consultar paseo 
 
 * Como **administrador**.
-* Quiero **procesar pedido**.
-* Para poder despachar los productos o pedirlos a proveedores en caso de no estar disponibles.
+* Quiero **consultar paseos** agendados.
+* Para poder ver la disponibilidad de la agenda.
+
+### Cambiar estado paseo
+
+* Como **administrador**.
+* Quiero **cambiar el estado de los paseos**.
+* Para informar en tiempo real el estado de paseos en la plataforma.
 
 ### Consultar citas 
 
