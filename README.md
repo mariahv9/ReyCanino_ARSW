@@ -97,10 +97,6 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Base%20de%20Datos.png)
 
-## Diagrama de Secuencia
-
-![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/secuencia.png)
-
 ## Diagrama de Componentes
 
 ![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Componentes.png)
@@ -114,9 +110,21 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ![Vista Administador](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaAdmin.png)
 
+* Agenda Administrador
+
+![Agenda Administador](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/agendaAdmin.png)
+
 * Cliente
 
 ![Vista Cliente](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaCliente.png)
+
+* Registro mascota
+
+![Registro pet](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/registro.png)
+
+* Agenda Disponibilidad cita-paseo
+
+![Agenda disponibilidad](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/agendaDisponibilidad.png)
 
 ## Reviewed
 Diego Alfonso Prieto Torres
