@@ -1,5 +1,5 @@
 # Rey Canino
-![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.jpeg)
+![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.png)
 
 ## Integrantes
 * Miguel Angel Castellanos Salamanca
