@@ -2,7 +2,6 @@
 ![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.png)
 
 ## Integrantes
-* Miguel Angel Castellanos Salamanca
 * Maria Fernanda Hernandez Vargas
 
 ## Resumen 
@@ -11,7 +10,7 @@ Este proyecto se ha basado en una problemática y se solucionará usando tecnolo
 
 ## Descripción 
 
-El problema encontrado fue la perdida de oportunidades de venta debido a la baja capacidad de procesamiento de solicitudes simultáneas en la peluquería Rey Canino; al haber estudiado esta problemática se planteó la solución del desarrollo  de una plataforma que permita manejar las multiples solicitudes y ser procesadas en tiempo real.
+El problema encontrado fue la perdida de oportunidades de venta debido a la baja capacidad de procesamiento de solicitudes simultáneas en las peluquerías caninas en Bogotá; al haber estudiado esta problemática se planteó la solución del desarrollo de una plataforma que permita manejar las múltiples solicitudes y ser procesadas en tiempo real para las diferentes petshops.
 
 ## Historias de usuario
 
@@ -65,30 +64,6 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 * Quiero **cancelar una cita** agendada.
 * Para poder liberar ese espacio.
 
-### Consultar paseo 
-
-* Como **administrador**.
-* Quiero **consultar paseos** agendados.
-* Para poder ver la disponibilidad de la agenda.
-
-### Cambiar estado paseo
-
-* Como **administrador**.
-* Quiero **cambiar el estado de los paseos**.
-* Para informar en tiempo real el estado de paseos en la plataforma.
-
-### Consultar citas 
-
-* Como **administrador**.
-* Quiero **consultar citas**.
-* Para poder ver la disponibilidad de la agenda.
-
-### Cambiar estado citas
-
-* Como **administrador**.
-* Quiero **cambiar el estado de las citas**.
-* Para informar en tiempo real el estado de citas en la plataforma.
-
 ## Diagrama de clases
 
 ![Diagrama Clases](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/DiagramaClases.png)
@@ -106,21 +81,9 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 
 ![Vista Inicio](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaInicio.png)
 
-* Administrador
-
-![Vista Administador](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaAdmin.png)
-
-* Agenda Administrador
-
-![Agenda Administador](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/agendaAdmin.png)
-
 * Cliente
 
 ![Vista Cliente](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaCliente.png)
-
-* Registro mascota
-
-![Registro pet](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/registro.png)
 
 * Agenda Disponibilidad cita-paseo
 
@@ -130,7 +93,5 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 Diego Alfonso Prieto Torres
 
 ## Authors
-
-* **Miguel Angel Castellanos Salamanca** - [PurpleBooth](https://github.com/macastellanossalamanca)
 * **Maria Fernanda Hernandez Vargas** - [PurpleBooth](https://github.com/mariahv9)
 Student of Systems Engineering of Escuela Colombiana de Ingenieria Julio Garavito 
