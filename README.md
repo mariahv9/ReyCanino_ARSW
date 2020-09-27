@@ -77,17 +77,38 @@ El problema encontrado fue la perdida de oportunidades de venta debido a la baja
 ![Bases de Datos](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Componentes.png)
 
 ## Vistas
-* Inicio
+
+### Inicio
 
 ![Vista Inicio](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaInicio.png)
 
-* Cliente
+### Servicios
 
-![Vista Cliente](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaCliente.png)
+![Servicios](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaClienteServicios.png)
 
-* Agenda Disponibilidad cita-paseo
+### PetShops
 
-![Agenda disponibilidad](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/agendaDisponibilidad.png)
+![PetShops](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/VistaClientePetshops.png)
+
+### Reservar desde Servicios
+
+![Reserva1](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/ReservaServicios.png)
+
+### Reservar desde PetShop
+
+![Reserva2](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/ReservaPetshop.png)
+
+### Reserva exitosa
+
+![ReservaExitosa](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/ReservaExitosa.png)
+
+### Consultar reserva
+
+![Cinsultar](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/ConsultarReserva.png)
+
+### Cancelar Reserva
+
+![Cancelar](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/CancdelarReserva.png)
 
 ## Reviewed
 Diego Alfonso Prieto Torres
