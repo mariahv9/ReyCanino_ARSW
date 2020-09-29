@@ -17,7 +17,7 @@ public class DataBaseConnection {
     /**
      * Method that does the connection with data base
      */
-    public DataBaseConnection (){
+    public static Connection getDataBaseConnection (){
         try {
             Class.forName("org.postgresql.Driver");
             connect = DriverManager.getConnection(url, user, passwd);
@@ -26,5 +26,6 @@ public class DataBaseConnection {
         } catch (SQLException s) {
             s.printStackTrace();
         }
+        return connect;
     }
 }
