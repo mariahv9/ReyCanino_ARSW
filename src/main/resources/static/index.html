@@ -15,9 +15,14 @@
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/templatemo_misc.css">
         <link rel="stylesheet" href="css/templatemo_style.css">
+        <link rel="stylesheet" href="/webjars/toastr/2.1.2/build/toastr.min.css" />
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="/webjars/toastr/2.1.2/build/toastr.min.js"></script>
         <script src="app/view.js"></script>
+        <script src="app/app.js"></script>
+        <script src="app/apiclient.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -96,7 +101,7 @@
 						<div class="portfolio-item col-md-3 col-sm-6">
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showShops()">
+							<div class="portfolio-thumb" onclick="view.showShops();app.selectService(1)">
 								<img src="images/gallery/peluqueria.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>Peluqueria Canina</h3>
@@ -108,7 +113,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showShops()">
+							<div class="portfolio-thumb" onclick="view.showShops();app.selectService(2)">
 								<img src="images/gallery/paseo.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>Paseo canino</h3>
@@ -135,7 +140,7 @@
 					</div> <!-- /.row -->
 					<div class="row">
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(1)">
 								<img src="images/gallery/p1.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>PETSHOP PREMIUM</h3>
@@ -147,7 +152,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(2)">
 								<img src="images/gallery/p2.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>MIMO A MI MASCOTA</h3>
@@ -282,10 +287,9 @@
 								</div>
 							</div>
 						</div> <!-- /.row -->
-					</div> <!-- /.heading-section -->
-	            </div> <!-- /.container -->
-	        </div> <!-- /#cancelar -->
-        </div>
+		            </div> <!-- /.container -->
+		        </div> <!-- /#cancelar -->
+        	</div>
         <div class="content-section" id="servicesMenu" style="display:none">
 	        <div class="container">
 	        	<div class="row">
@@ -295,7 +299,8 @@
 	        	</div>
 	        	<div class="row">
 	        		<div>
-		        		<select name="cars" id="serviceSelected">
+	        			<input type="date"  id="fechaServicio" />
+		        		<select name="service" id="serviceSelected">
 						  <option value="Peluqueria">Peluqueria canina</option>
 						  <option value="Paseo">Paseo</option>
 						</select>
@@ -314,8 +319,8 @@
         		</div>
         		<div class="row">
         			<div>
-<!--						<input type="date" name="fecha" id="fecha" placeholder="Introduce una fecha" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?> />-->
-						<input type="date"/>
+
+						<input type="date" id="fechaShop"/>
 		        		<select name="cars" id="shopSelected">
 					  	<option value="1">PetShop Premium</option>
 					  	<option value="2">Mimo a mi mascota</option>
@@ -347,11 +352,19 @@
 						<p>
 							<input name="petName" type="text" id="petName" placeholder="Nombre peludo">
 						</p>
-						<br>
-						<input type="submit" class="mainBtn" id="reservar" value="Reservar">
+						<p>
+							<input name="breed" type="text" id="breed" placeholder="Raza de tu mascota">
+						</p>
+						<p>
+							<input name="tel" type="text" id="tel" placeholder="Telefono">
+						</p>
+						
+						<br/>
+						<button type="button" class="mainBtn" id="reservar" onclick="app.reservarShop()">Reservar</button>
 						<button type="button" id="back"  onclick="view.showPrincipal()">Atrás</button>
-						<br><br><br><br><br><br><br><br><br>
+						<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					</form>
+						
 		       	</div>
         	</div>
         </div>

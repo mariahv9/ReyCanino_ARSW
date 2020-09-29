@@ -13,4 +13,6 @@ public class ReyCaninoService {
     public Collection<Horario> consultsAvailable (Date date, String service, String petShop) throws SQLException {
         return HorariosDAO.consultAvailable(date, service, petShop);
     }
+    
+    
 }

@@ -3,47 +3,57 @@ package edu.eci.arsw.rey.reycanino.reyCanino.model;
 import java.sql.Time;
 
 public class Horario {
-    Integer day, service, petshop;
-    Time timeStart, timeFinal;
-    public Horario(){}
+	Integer day, service, petshop, id;
+	Time timeStart, timeFinal;
 
-    public Integer getDay() {
-        return day;
-    }
+	public Horario() {
+	}
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Integer getService() {
-        return service;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setService(Integer service) {
-        this.service = service;
-    }
+	public Integer getDay() {
+		return day;
+	}
 
-    public Integer getPetshop() {
-        return petshop;
-    }
+	public void setDay(Integer day) {
+		this.day = day;
+	}
 
-    public void setPetshop(Integer petshop) {
-        this.petshop = petshop;
-    }
+	public Integer getService() {
+		return service;
+	}
 
-    public Time getTimeStart() {
-        return timeStart;
-    }
+	public void setService(Integer service) {
+		this.service = service;
+	}
 
-    public void setTimeStart(Time timeStart) {
-        this.timeStart = timeStart;
-    }
+	public Integer getPetshop() {
+		return petshop;
+	}
 
-    public Time getTimeFinal() {
-        return timeFinal;
-    }
+	public void setPetshop(Integer petshop) {
+		this.petshop = petshop;
+	}
 
-    public void setTimeFinal(Time timeFinal) {
-        this.timeFinal = timeFinal;
-    }
+	public Time getTimeStart() {
+		return timeStart;
+	}
+
+	public void setTimeStart(Time timeStart) {
+		this.timeStart = timeStart;
+	}
+
+	public Time getTimeFinal() {
+		return timeFinal;
+	}
+
+	public void setTimeFinal(Time timeFinal) {
+		this.timeFinal = timeFinal;
+	}
 }
