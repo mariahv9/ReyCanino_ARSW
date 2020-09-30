@@ -22,7 +22,9 @@ var view = (function() {
 
 	function hideData() {
 		let data = document.getElementById("data");
+		let btn = document.getElementById("atras");
 		data.style.display = "none";
+		btn.style.display = "none";
 		document.getElementById("name").value = ""
 		document.getElementById("email").value = ""
 		document.getElementById("petName").value = ""
@@ -33,7 +35,9 @@ var view = (function() {
 
 	function showData() {
 		let data = document.getElementById("data");
+		let btn = document.getElementById("atras");
 		data.style.display = "block";
+		btn.style.display = "block";
 	}
 
 	function hideQuery() {

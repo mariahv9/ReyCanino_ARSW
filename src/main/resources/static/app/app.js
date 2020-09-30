@@ -2,7 +2,7 @@ var app = (function () {
 	
 	var serviceSelected;
 	var shopSelected;
-	var servicio;
+	var enviaServicio = false;
 	
 	function validarFecha(date){
 		let valores = date.split("-")
@@ -97,7 +97,7 @@ var app = (function () {
 	}
 
 	function consultarTienda (){
-	    servicio = false
+	    enviaServicio = false
 	    let date = document.getElementById("fechaShop").value
 	    let tienda = document.getElementById("shopSelected").value
 	    let valid = true
@@ -108,7 +108,7 @@ var app = (function () {
 	}
 
 	function consultarServicio (){
-	    servicio = true
+	    enviaServicio = true
 	    let date = document.getElementById("fechaServicio").value
         let servicio = document.getElementById("serviceSelected").value
         let valid = true
@@ -124,7 +124,7 @@ var app = (function () {
         $("#filas").empty();
         data.map(function(element){
             let onclick = "";
-            if(servicio){
+            if(enviaServicio){
                 onclick = "app.reservarService("+element.id+")";
             }
             else{
