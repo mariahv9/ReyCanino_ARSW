@@ -1,4 +1,7 @@
 # Rey Canino
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a7c3c9aa2d364ef7afda4d0099efa67e)](https://app.codacy.com/gh/mariahv9/ReyCanino_ARSW?utm_source=github.com&utm_medium=referral&utm_content=mariahv9/ReyCanino_ARSW&utm_campaign=Badge_Grade)
+
 [Heroku Despliegue](https://reycanino.herokuapp.com/)
 
 
