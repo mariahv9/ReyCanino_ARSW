@@ -16,10 +16,14 @@
         <link rel="stylesheet" href="css/templatemo_misc.css">
         <link rel="stylesheet" href="css/templatemo_style.css">
         <link rel="stylesheet" href="/webjars/toastr/2.1.2/build/toastr.min.css" />
+        <link rel="stylesheet" href="/webjars/sweetalert2/9.10.12/dist/sweetalert2.min.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
         <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
         <script src="/webjars/toastr/2.1.2/build/toastr.min.js"></script>
+        <script src="/webjars/sweetalert2/9.10.12/dist/sweetalert2.all.min.js"></script>
+    	<script src="/webjars/sweetalert2/9.10.12/dist/sweetalert2.min.js"></script>
         <script src="app/view.js"></script>
         <script src="app/app.js"></script>
         <script src="app/apiclient.js"></script>
@@ -43,10 +47,10 @@
                                     <div class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></div>
                                     <ul class="menu-first">
                                         <li class="active"><a href="#">Inicio</a></li>
-                                        <li><a href="#services">Servicios</a></li>
-                                        <li><a href="#portfolio">PetShops</a></li>
-                                        <li><a href="#consultar">Consultar</a></li>
-                                        <li><a href="#cancelar">Cancelar</a></li>
+                                        <li><a href="#services" onclick="view.showPrincipal()">Servicios</a></li>
+                                        <li><a href="#portfolio" onclick="view.showPrincipal()">PetShops</a></li>
+                                        <li><a href="#consultar" onclick="view.showPrincipal()">Consultar</a></li>
+                                        <li><a href="#cancelar" onclick="view.showPrincipal()">Cancelar</a></li>
                                     </ul>
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
@@ -164,7 +168,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(3)">
 								<img src="images/gallery/p7.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>CANIS ESTÉTICA PERRUNA</h3>
@@ -176,7 +180,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(4)">
 								<img src="images/gallery/p8.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>LES POILUS</h3>
@@ -188,7 +192,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(5)">
 								<img src="images/gallery/p3.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>PETS WITHOUT PARENTS</h3>
@@ -200,7 +204,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(6)">
 								<img src="images/gallery/p4.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>CITY STILE</h3>
@@ -212,7 +216,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(7)">
 								<img src="images/gallery/p5.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>MUNDO MASCOTA</h3>
@@ -224,7 +228,7 @@
 							</div> <!-- /.portfolio-thumb -->
 						</div> <!-- /.portfolio-item -->
 						<div class="portfolio-item col-md-3 col-sm-6">
-							<div class="portfolio-thumb" onclick="view.showServices()">
+							<div class="portfolio-thumb" onclick="view.showServices();app.selectShop(8)">
 								<img src="images/gallery/p6.png" alt="">
 								<div class="portfolio-overlay">
 									<h3>CUATRO PATAS</h3>
@@ -289,7 +293,8 @@
 						</div> <!-- /.row -->
 		            </div> <!-- /.container -->
 		        </div> <!-- /#cancelar -->
-        	</div>
+        </div>
+        
         <div class="content-section" id="servicesMenu" style="display:none">
 	        <div class="container">
 	        	<div class="row">
@@ -298,11 +303,11 @@
 	        		</div>
 	        	</div>
 	        	<div class="row">
-	        		<div>
+	        		<div class="col-md-12 text-center">
 	        			<input type="date"  id="fechaServicio" />
 		        		<select name="service" id="serviceSelected">
-						  <option value="Peluqueria">Peluqueria canina</option>
-						  <option value="Paseo">Paseo</option>
+						  <option value="1">Peluqueria canina</option>
+						  <option value="2">Paseo</option>
 						</select>
 						<input type="submit" class="mainBtn" id="findService"
 							value="Buscar disponibilidad">
@@ -310,6 +315,7 @@
 	        	</div>
 	        </div>
         </div>
+        
         <div class="content-section" id="shopsMenu" style="display:none" >
         	<div class="container">
         		<div class="row">
@@ -318,8 +324,7 @@
         			</div>
         		</div>
         		<div class="row">
-        			<div>
-
+        			<div class="col-md-12 text-center">
 						<input type="date" id="fechaShop"/>
 		        		<select name="cars" id="shopSelected">
 					  	<option value="1">PetShop Premium</option>
@@ -337,38 +342,51 @@
         		</div>
         	</div>
         </div>
+        
         <div class="content-section" id="data" style="display:none">
         	<div class="container">	
-		       	<div class="cancelar-form">
-		       		<form id="reserva" name="contactform" method="post">
-						<p>
-							<input name="name" type="text" id="name" placeholder="Nombre">
-						</p>
-						<br>
-						<p>
-							<input name="email" type="text" id="email" placeholder="Email">
-						</p>
-						<br>
-						<p>
-							<input name="petName" type="text" id="petName" placeholder="Nombre peludo">
-						</p>
-						<p>
-							<input name="breed" type="text" id="breed" placeholder="Raza de tu mascota">
-						</p>
-						<p>
-							<input name="tel" type="text" id="tel" placeholder="Telefono">
-						</p>
+		       	<div class="row justify-content-md-center">
+		       			<div class="col-md-6 text-center">
+							<p>
+								<input name="name" type="text" id="name" placeholder="Nombre">
+							</p>
+							<br>
+							<p>
+								<input name="email" type="text" id="email" placeholder="Email">
+							</p>
+							<br>
+							<p>
+								<input name="petName" type="text" id="petName" placeholder="Nombre peludo">
+							</p>
+						</div>
+						<div class="col-md-6 text-center">
+							<p>
+								<input name="breed" type="text" id="breed" placeholder="Raza de tu mascota">
+							</p>
+							<br/>
+							<p>
+								<input name="tel" type="text" id="tel" placeholder="Telefono">
+							</p>
+							<br/>
+							<p>
+								<input name="comment" type="text" id="comment" placeholder="Comentario">
+							</p>
+							<br/>
+						</div>
 						
-						<br/>
-						<button type="button" class="mainBtn" id="reservar" onclick="app.reservarShop()">Reservar</button>
-						<button type="button" id="back"  onclick="view.showPrincipal()">Atrás</button>
-						<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-					</form>
-						
-		       	</div>
+				</div>
+				<div class="row">
+					<div class=" col-md-12 text-center">
+						<button type="button" class="mainBtn" id="reservar" onclick="app.reservarShop(10)">Reservar primero es el servicio</button>
+						<button type="button" class="mainBtn" id="reservar" onclick="app.reservarService(10)">Reservar primero la petshop</button>
+						<button type="button" id="back"   onclick="view.showPrincipal()">Atrás</button>
+					</div>
+				</div>
+		       	
         	</div>
         </div>
-        <div class="content-section" id="query" style="display:none">
+        
+        <div class="content-section" id="query">
         </div>
         <script src="js/vendor/jquery-1.11.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>

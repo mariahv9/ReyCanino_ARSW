@@ -1,72 +1,94 @@
-var view = (function(){
-	
-	function hidePrincipal(){
+var view = (function() {
+
+	function hidePrincipal() {
 		let principal = document.getElementById("principal");
 		principal.style.display = "none";
 	}
-	
-	function showPrincipal(){
+
+	function showPrincipal() {
 		let principal = document.getElementById("principal");
 		hideData();
 		hideServices();
 		hideShops();
-		hideQuery();
 		principal.style.display = "block";
+
+		$('html, body').animate({
+			scrollTop: $("#sTop").offset().top
+		},
+			500);
+
 	}
-	
-	function hideData(){
+
+	function hideData() {
 		let data = document.getElementById("data");
 		data.style.display = "none";
+		document.getElementById("name").value = ""
+		document.getElementById("email").value = ""
+		document.getElementById("petName").value = ""
+		document.getElementById("breed").value = ""
+		document.getElementById("tel").value = ""
+		document.getElementById("comment").value = ""
 	}
-	
-	function showData(){
+
+	function showData() {
 		let data = document.getElementById("data");
 		data.style.display = "block";
 	}
-	
-	function hideQuery(){
+
+	function hideQuery() {
 		let query = document.getElementById("query");
 		query.style.display = "none";
 	}
-	
-	function showQuery(){
+
+	function showQuery() {
 		let query = document.getElementById("query");
 		query.style.display = "block";
 	}
-	
-	function showServices(){
+
+	function showServices() {
 		let menu = document.getElementById("servicesMenu");
 		menu.style.display = "block";
 		hidePrincipal();
 		showData();
+		$('html, body').animate({
+			scrollTop: $("#servicesMenu").offset().top
+		},
+			500);
 	}
-	
-	function hideServices(){
+
+	function hideServices() {
 		let menu = document.getElementById("servicesMenu");
 		menu.style.display = "none";
+		document.getElementById("fechaServicio").value = ""
 		hideData();
 	}
-	
-	function showShops(){
+
+	function showShops() {
 		let menu = document.getElementById("shopsMenu");
 		menu.style.display = "block";
 		hidePrincipal();
+		$('html, body').animate({
+			scrollTop: $("#shopsMenu").offset().top
+		},
+			500);
 		showData();
 	}
-	
-	function hideShops(){
+
+	function hideShops() {
 		let menu = document.getElementById("shopsMenu");
 		menu.style.display = "none";
+		document.getElementById("fechaShop").value = ""
 		hideData();
 	}
-	
-	return{
-		showServices:showServices,
-		hideServices:hideServices,
-		showShops:showShops,
-		hideShops:hideShops,
-		showQuery:showQuery,
-		hideQuery:hideQuery,
-		showPrincipal:showPrincipal
+
+
+	return {
+		showServices: showServices,
+		hideServices: hideServices,
+		showShops: showShops,
+		hideShops: hideShops,
+		showQuery: showQuery,
+		hideQuery: hideQuery,
+		showPrincipal: showPrincipal
 	}
 })();

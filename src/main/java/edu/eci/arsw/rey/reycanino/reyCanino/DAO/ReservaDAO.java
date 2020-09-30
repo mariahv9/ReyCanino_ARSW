@@ -2,6 +2,7 @@ package edu.eci.arsw.rey.reycanino.reyCanino.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -11,15 +12,29 @@ import edu.eci.arsw.rey.reycanino.reyCanino.persistence.DataBaseConnection;
 public class ReservaDAO {
 
 	private static final String insert = "insert into \"RESERVA\"(fecha,comentario, identificador, cliente, horario)"
-			+ "values (?::Date,?, nextval('reserva_sequence'), currval('client_sequence'), ?::bigint);";
+			+ "values (?::Date,?, ?::integer, ?::bigint, ?::bigint);";
+	
+	private static final String SEQUENCE = "select nextval('reserva_sequence')";
 
 	public static void insert(Reserva reserva) throws SQLException {
 		if (reserva != null) {
 			Connection connection = DataBaseConnection.getDataBaseConnection();
 			PreparedStatement preparedStatement;
+			PreparedStatement sequence;
+			ResultSet resultSet;
 			try {
 				String dateAux = "";
 				int count = 1;
+				String sequenceCont = "";
+				sequence     = connection.prepareStatement(SEQUENCE);
+				resultSet =  sequence.executeQuery();
+				if(resultSet.next())
+					sequenceCont = resultSet.getString(1);
+				else
+					throw new Exception("Without Secuence");
+				
+				reserva.setIdentificador(sequenceCont);
+				
 				Calendar calendar = Calendar.getInstance();
 
 				calendar.setTime(reserva.getFecha());
@@ -31,11 +46,13 @@ public class ReservaDAO {
 				preparedStatement = connection.prepareStatement(insert);
 				preparedStatement.setString(count++, dateAux);
 				preparedStatement.setString(count++, reserva.getComentario());
-				//preparedStatement.setString(count++, reserva.getHorario());
+				preparedStatement.setString(count++, reserva.getIdentificador());				
+				preparedStatement.setString(count++, reserva.getCliente().getId());				
+				preparedStatement.setInt(count++, reserva.getHorario().getId());
 
 				preparedStatement.executeUpdate();
 
-			} catch (SQLException throwables) {
+			} catch (Exception throwables) {
 				throwables.printStackTrace();
 			} finally {
 				connection.close();

@@ -35,28 +35,14 @@ public class APIController {
         }
     }
     
-    
-//    @RequestMapping(value = "/reservar/{date}/{service}/{petshop}", method = RequestMethod.POST)
-//    public ResponseEntity<?> reservar (@Valid @RequestBody Cliente cliente, @PathVariable("date") String date, @PathVariable("service") String service, @PathVariable("petshop") String petShop){
-//        try {
-//            System.out.println(cliente.getCorreo());
-//            System.out.println(date+" " +service+" "+petShop);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }catch (Exception e){
-//            Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
     @RequestMapping(value = "/reservar", method = RequestMethod.POST)
     public ResponseEntity<?> reservar (@Valid @RequestBody Reserva reserva){
     	try {
-    		System.out.println(reserva.getFecha());
-    		System.out.println(reserva.getCliente().getCorreo());
-    		System.out.println(reserva.getHorario().getService());
-    		return new ResponseEntity<>(HttpStatus.OK);
+    		String codigo = serviceR.reservar(reserva);
+    		return new ResponseEntity<>(codigo, HttpStatus.OK);
     	}catch (Exception e){
     		Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     	}
     }
 }

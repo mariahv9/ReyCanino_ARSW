@@ -1,39 +1,53 @@
-var api = (function () {
+var api = (function() {
 
-    function reserva(date, serviceSelected, shop, email, petName, raza, telefono, horario) {
-        console.log("api crear sala recibido")
-		console.log(date, serviceSelected, shop, email, petName, raza, telefono)
-        let param = {
-			fecha:date,
-			horario:{
-				service:serviceSelected,
-				petshop:shop,
-				id:horario				
+	function reserva(date, serviceSelected, shop, email, petName, raza, telefono, horario, comentario) {
+
+		let valores = date.split("-")
+		let newDate = new Date(valores[0], parseInt(valores[1], 10) - 1, valores[2])
+
+		let param = {
+			fecha: newDate,
+			comentario: comentario,
+			horario: {
+				service: serviceSelected,
+				petshop: shop,
+				id: horario
 			},
-			cliente:{
+			cliente: {
 				nombreMascota: petName,
-				razaMascota:raza,
-				telefono:telefono,
-				correo:email	
-			}		
+				razaMascota: raza,
+				telefono: telefono,
+				correo: email
+			}
 		}
-		
-		console.log(JSON.stringify(param))
-		 $.ajax({
-                data: JSON.stringify(param),
-				contentType: "application/json",
-                url:   '/reyCanino/reservar', //archivo que recibe la peticion
-                type:  'post', //método de envio
-                beforeSend: function () {
-                        console.log("Enviando c:")
-                },
-                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                        console.log("Se envio c:")
-                }
-        });
-    }
 
-	return{
-        reserva:reserva
-    }
+		console.log(JSON.stringify(param))
+		$.ajax({
+			data: JSON.stringify(param),
+			contentType: "application/json",
+			url: '/reyCanino/reservar',
+			type: 'post',
+			success: function(response) {
+				crearMensaje(response)
+			}
+		});
+	}
+
+	function crearMensaje(response) {
+		Swal.fire({
+			title: "Creacion correcta",
+			text: 'Se ha creado su reserva con código '+response,
+			icon: 'success',
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'Ok!'
+		}).then((result) => {
+			if (result.value) {
+				location.assign("../index.html");
+			}
+		})
+	}
+
+	return {
+		reserva: reserva
+	}
 })();
