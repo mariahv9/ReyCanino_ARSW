@@ -2,11 +2,9 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a7c3c9aa2d364ef7afda4d0099efa67e)](https://app.codacy.com/gh/mariahv9/ReyCanino_ARSW?utm_source=github.com&utm_medium=referral&utm_content=mariahv9/ReyCanino_ARSW&utm_campaign=Badge_Grade)
 
-
 [![CircleCI](https://circleci.com/gh/mariahv9/ReyCanino_ARSW.svg?style=svg&circle-token=fa8c51f3bedd926b133267148a5e3c22e1617f4a)](https://app.circleci.com/pipelines/github/mariahv9/ReyCanino_ARSW)
 
-[Heroku Despliegue](https://reycanino.herokuapp.com/)
-
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://reycanino.herokuapp.com/)
 
 ![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.png)
 
