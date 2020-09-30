@@ -1,5 +1,6 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.api;
 
+import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
 import edu.eci.arsw.rey.reycanino.reyCanino.service.ReyCaninoService;
 
@@ -25,10 +26,10 @@ public class APIController {
     @Qualifier("ReyCanino")
     ReyCaninoService serviceR;
 
-    @RequestMapping(value = "/{date}/{service}/{petshop}", method = RequestMethod.GET)
-    public ResponseEntity<?> consultsAvailableDates (@PathVariable("date") Date date, @PathVariable("service") String service, @PathVariable("petshop") String petShop){
+    @RequestMapping(value = "/consultar", method = RequestMethod.POST)
+    public ResponseEntity<?> consultsAvailableDates (@Valid @RequestBody Reserva reserva){
         try {
-            return new ResponseEntity<>(serviceR.consultsAvailable(date, service, petShop), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceR.consultsAvailable(reserva), HttpStatus.ACCEPTED);
         }catch (Exception e){
             Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -36,13 +37,13 @@ public class APIController {
     }
     
     @RequestMapping(value = "/reservar", method = RequestMethod.POST)
-    public ResponseEntity<?> reservar (@Valid @RequestBody Reserva reserva){
-    	try {
-    		String codigo = serviceR.reservar(reserva);
-    		return new ResponseEntity<>(codigo, HttpStatus.OK);
-    	}catch (Exception e){
-    		Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
-    		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    	}
+    public ResponseEntity<?> reservar (@Valid @RequestBody Reserva reserva) {
+        try {
+            String codigo = serviceR.reservar(reserva);
+            return new ResponseEntity<>(codigo, HttpStatus.OK);
+        } catch (Exception e) {
+            Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

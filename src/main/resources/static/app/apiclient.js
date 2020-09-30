@@ -47,7 +47,32 @@ var api = (function() {
 		})
 	}
 
+	function consultar (date, tienda, servicio){
+	    let valores = date.split("-")
+        let newDate = new Date(valores[0], parseInt(valores[1], 10) - 1, valores[2])
+
+        let param = {
+            fecha: newDate,
+            horario: {
+                service: servicio,
+                petshop: tienda,
+            }
+        }
+
+        console.log(JSON.stringify(param))
+        $.ajax({
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            url: '/reyCanino/consultar',
+            type: 'post',
+            success: function(response) {
+                app.mostrarTabla(response)
+            }
+        });
+	}
+
 	return {
-		reserva: reserva
+		reserva: reserva,
+		consultar:consultar
 	}
 })();

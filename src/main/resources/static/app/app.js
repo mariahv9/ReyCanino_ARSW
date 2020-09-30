@@ -2,6 +2,7 @@ var app = (function () {
 	
 	var serviceSelected;
 	var shopSelected;
+	var servicio;
 	
 	function validarFecha(date){
 		let valores = date.split("-")
@@ -93,7 +94,47 @@ var app = (function () {
 		if(valid){
 			api.reserva(date, service, shopSelected, email, petName, raza, telefono, horario, comentario)
 		}
-		
+	}
+
+	function consultarTienda (){
+	    servicio = false
+	    let date = document.getElementById("fechaShop").value
+	    let tienda = document.getElementById("shopSelected").value
+	    let valid = true
+	    valid = !validarFecha(date)
+	    if (valid){
+	        api.consultar(date, tienda, serviceSelected)
+	    }
+	}
+
+	function consultarServicio (){
+	    servicio = true
+	    let date = document.getElementById("fechaServicio").value
+        let servicio = document.getElementById("serviceSelected").value
+        let valid = true
+        valid = !validarFecha(date)
+        if (valid){
+            api.consultar(date, shopSelected, servicio)
+        }
+	}
+
+	function mostrarTabla (data){
+	    let tabla = document.getElementById("tabla")
+        tabla.style.display = "block";
+        $("#filas").empty();
+        data.map(function(element){
+            let onclick = "";
+            if(servicio){
+                onclick = "app.reservarService("+element.id+")";
+            }
+            else{
+                onclick = "app.reservarShop("+element.id+")";
+            }
+
+            let boton = "<input type='button' value='reservar' onclick='" + onclick + "'></input>";
+            let markup = "<tr> <td>"+ element.timeStart + "</td> <td> " + boton + "</td> </tr>";
+            $("#filas").append(markup)
+        });
 	}
 	
 	return{
@@ -104,6 +145,9 @@ var app = (function () {
 		},
 		selectShop:function(shop){
 			shopSelected = shop;
-		}
+		},
+	    consultarServicio:consultarServicio,
+	    consultarTienda:consultarTienda,
+	    mostrarTabla:mostrarTabla
 	}
 })();

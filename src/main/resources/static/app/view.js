@@ -10,6 +10,7 @@ var view = (function() {
 		hideData();
 		hideServices();
 		hideShops();
+		hideTable();
 		principal.style.display = "block";
 
 		$('html, body').animate({
@@ -81,6 +82,15 @@ var view = (function() {
 		hideData();
 	}
 
+	function showTable(){
+        let data = document.getElementById("tabla");
+        data.style.display = "block";
+    }
+
+    function hideTable (){
+        let data = document.getElementById("tabla");
+        data.style.display = "none";
+    }
 
 	return {
 		showServices: showServices,
@@ -89,6 +99,7 @@ var view = (function() {
 		hideShops: hideShops,
 		showQuery: showQuery,
 		hideQuery: hideQuery,
-		showPrincipal: showPrincipal
+		showPrincipal: showPrincipal,
+		showTable:showTable
 	}
 })();

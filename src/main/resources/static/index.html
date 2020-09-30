@@ -295,7 +295,7 @@
 		        </div> <!-- /#cancelar -->
         </div>
         
-        <div class="content-section" id="servicesMenu" style="display:none">
+        <div class="content-section-2" id="servicesMenu" style="display:none">
 	        <div class="container">
 	        	<div class="row">
 	        		<div class="heading-section col-md-12 text-center">
@@ -309,14 +309,14 @@
 						  <option value="1">Peluqueria canina</option>
 						  <option value="2">Paseo</option>
 						</select>
-						<input type="submit" class="mainBtn" id="findService"
+						<input type="button" onclick="app.consultarServicio()" class="mainBtn" id="findService"
 							value="Buscar disponibilidad">
 	        		</div>
 	        	</div>
 	        </div>
         </div>
         
-        <div class="content-section" id="shopsMenu" style="display:none" >
+        <div class="content-section-2" id="shopsMenu" style="display:none" >
         	<div class="container">
         		<div class="row">
 	        		<div class="heading-section col-md-12 text-center">
@@ -336,14 +336,14 @@
 						<option value="7">Canis Estetica Perruna</option>
 						<option value="8">Les poilus</option>
 						</select>
-						<input type="submit" class="mainBtn" id="findShop"
+						<input type="button" onclick="app.consultarTienda()" class="mainBtn" id="findShop"
 							value="Buscar disponibilidad">
         			</div>
         		</div>
         	</div>
         </div>
         
-        <div class="content-section" id="data" style="display:none">
+        <div class="content-section-2" id="data" style="display:none">
         	<div class="container">	
 		       	<div class="row justify-content-md-center">
 		       			<div class="col-md-6 text-center">
@@ -375,18 +375,32 @@
 						</div>
 						
 				</div>
-				<div class="row">
-					<div class=" col-md-12 text-center">
-						<button type="button" class="mainBtn" id="reservar" onclick="app.reservarShop(10)">Reservar primero es el servicio</button>
-						<button type="button" class="mainBtn" id="reservar" onclick="app.reservarService(10)">Reservar primero la petshop</button>
-						<button type="button" id="back"   onclick="view.showPrincipal()">Atrás</button>
-					</div>
-				</div>
-		       	
         	</div>
         </div>
-        
-        <div class="content-section" id="query">
+		<div class="content-section-2" id="tabla" style="display:none">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-md-6">
+						<h2 id="disponibilidad"> Disponibilidad de horarios en el día: </h2>
+						<table class="table" id="table">
+							<thead>
+							<tr>
+								<th scope="row">Hora</th>
+								<th scope="row">Reserva</th>
+							</tr>
+							</thead>
+							<tbody id="filas" ></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class=" col-md-12 text-center">
+				<button type="button" id="back"   onclick="view.showPrincipal()">Atrás</button>
+			</div>
+		</div>
+		<div class="content-section" id="query">
         </div>
         <script src="js/vendor/jquery-1.11.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
