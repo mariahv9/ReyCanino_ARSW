@@ -11,23 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 
 public class HorariosDAO {
-//    public static void main(String[] args) {
-//        Calendar cal = Calendar.getInstance();
-//        cal.set(Calendar.DAY_OF_MONTH, 25);
-//        cal.set(Calendar.MONTH, 9);
-//        cal.set(Calendar.YEAR, 2020);
-//        Date d = cal.getTime();
-//
-//        try {
-//            Collection<Horario> collection = consultAvailable(d, "1", "1");
-//            System.out.println(collection.size());
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//    }
 
     private static final String available = "select * from \"HORARIO\" h2 where h2.identificacion not in (" +
             "select r.horario from \"RESERVA\" r, \"HORARIO\" h, \"TIENDA_CANINA\" tc, \"SERVICIO\" s " +
