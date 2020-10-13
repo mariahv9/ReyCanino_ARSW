@@ -51,5 +51,4 @@ public class Reserva {
 	public void setHorario(Horario horario) {
 		this.horario = horario;
 	}
-
 }

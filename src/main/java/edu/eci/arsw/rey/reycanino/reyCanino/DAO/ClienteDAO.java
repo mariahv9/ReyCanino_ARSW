@@ -1,12 +1,11 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.DAO;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Connection;
+import edu.eci.arsw.rey.reycanino.reyCanino.db.RethinkDBConnectionFactory;
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Cliente;
-import edu.eci.arsw.rey.reycanino.reyCanino.persistence.DataBaseConnection;
 
 public class ClienteDAO {
 	
@@ -17,16 +16,15 @@ public class ClienteDAO {
 	
 	public static void insert(Cliente cliente) throws SQLException {
 		if (cliente != null) {
-			Connection connection = DataBaseConnection.getDataBaseConnection();
+			Connection connection = null;
 			PreparedStatement preparedStatement;
 			PreparedStatement sequence;
 			ResultSet resultSet;
 			try {
-
 				int count = 1;
 				String sequenceCont = "";
 				
-				sequence     = connection.prepareStatement(SEQUENCE);
+				sequence = connection.prepareStatement(SEQUENCE);
 				resultSet =  sequence.executeQuery();
 				if(resultSet.next())
 					sequenceCont = resultSet.getString(1);
@@ -51,5 +49,4 @@ public class ClienteDAO {
 			}
 		}
 	}
-
 }

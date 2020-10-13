@@ -1,31 +1,41 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.persistence;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.rethinkdb.RethinkDB;
+import com.rethinkdb.net.Connection;
+import com.rethinkdb.net.Cursor;
+import edu.eci.arsw.rey.reycanino.reyCanino.db.RethinkDBConnectionFactory;
+import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
 
-/**
- * This class makes the connection with the data base and obtain datas
- * @author Maria Fernanda Hernandez Vargas
- */
 public class DataBaseConnection {
-    private static String url = "jdbc:postgresql://ec2-54-235-192-146.compute-1.amazonaws.com:5432/d98eeu5e11qd9q";
-    private static String user = "vqutduqigizrpu";
-    private static String passwd = "4b13f1b319aac26027d8839941271d1bf8585eaad56a9ed7c974752699b1cfcf";
-    private static Connection connect = null;
+    static RethinkDB r = RethinkDB.r;
+    static Connection connection;
 
-    /**
-     * Method that does the connection with data base
-     */
-    public static Connection getDataBaseConnection (){
-        try {
-            Class.forName("org.postgresql.Driver");
-            connect = DriverManager.getConnection(url, user, passwd);
-        } catch (ClassNotFoundException c) {
-            c.printStackTrace();
-        } catch (SQLException s) {
-            s.printStackTrace();
+    public static Cursor disponibilidad (Reserva reserva){
+        connection = RethinkDBConnectionFactory.createConnection();
+        Cursor c = r.db("ReyCanino").table("HORARIO")
+                .filter(servicio -> servicio.getField("id_servicio").eq("1"))
+                .filter(servicio -> servicio.getField("id_tienda_canina").eq("1"))
+                .filter(servicio -> servicio.getField("dia").eq("5"))
+                .outerJoin((r.db("ReyCanino").table("RESERVA")
+                                .eqJoin("horario", r.db("ReyCanino").table("HORARIO"))
+                                .zip()
+                                .filter(horario -> horario.getField("id_servicio").eq("1"))
+                                .filter(horario -> horario.getField("id_tienda_canina").eq("1"))
+                                .filter(horario -> horario.getField("fecha").eq(r.time(2020, 9, 26, "Z")))
+                                .pluck("horario")),
+                        (horario_row,reserva_row)->
+                                horario_row.g("id")
+                                        .eq(reserva_row.g("horario"))
+                                        .or(reserva_row.hasFields("horario").not())
+                )
+                .zip()
+                .filter(horario -> horario.hasFields("horario").not())
+                .run(connection);
+        for (Object o: c){
+            System.out.println(o);
         }
-        return connect;
+        return c;
     }
+
+
 }

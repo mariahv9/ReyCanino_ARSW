@@ -7,7 +7,6 @@ package edu.eci.arsw.rey.reycanino.reyCanino.api;
 //import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-
 @Controller
 public class WebSocketController {
 	
@@ -21,5 +20,4 @@ public class WebSocketController {
 //        System.out.println("Se ha unido alguien a la sala "+name);
 //        return cache.getJugadoresBySala(name);
 //    }
-
 }

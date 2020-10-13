@@ -1,8 +1,6 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.db;
 
 import javax.annotation.PostConstruct;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,22 +11,16 @@ public class RethinkDBConfiguration {
 	
 	@Autowired
 	private Environment env;
+	public static String host = "ec2-34-235-155-214.compute-1.amazonaws.com";
+	public static int port = 32769;
 	
-	public static String DBHOST = "localhost";
-	
-	@PostConstruct
-	public void init() {
-		RethinkDBConfiguration.DBHOST = this.env.getProperty("rethinkdb.dbhost");
-	}
+//	@PostConstruct
+//	public void init() {
+//		RethinkDBConfiguration.host = this.env.getProperty("rethinkdb.host");
+//	}
 	
 	@Bean
 	public RethinkDBConnectionFactory connectionFactory() {
-		return new RethinkDBConnectionFactory(DBHOST);
+		return new RethinkDBConnectionFactory(host, port);
 	}
-	
-	@Bean
-	DbInitializer dbInitializer() {
-		return new DbInitializer();
-	}
-
 }

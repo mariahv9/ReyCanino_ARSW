@@ -1,13 +1,11 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.DAO;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Calendar;
-
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
-import edu.eci.arsw.rey.reycanino.reyCanino.persistence.DataBaseConnection;
 
 public class ReservaDAO {
 
@@ -18,7 +16,7 @@ public class ReservaDAO {
 
 	public static void insert(Reserva reserva) throws SQLException {
 		if (reserva != null) {
-			Connection connection = DataBaseConnection.getDataBaseConnection();
+			Connection connection = null;
 			PreparedStatement preparedStatement;
 			PreparedStatement sequence;
 			ResultSet resultSet;
@@ -61,5 +59,4 @@ public class ReservaDAO {
 			}
 		}
 	}
-
 }

@@ -2,10 +2,8 @@ package edu.eci.arsw.rey.reycanino.reyCanino.DAO;
 
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
-import edu.eci.arsw.rey.reycanino.reyCanino.persistence.DataBaseConnection;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ public class HorariosDAO {
             "and h2.servicio = ?::bigint and h2.tienda_canina = ?::bigint and h2.dia = ?::bigint;";
 
     public static Collection<Horario> consultAvailable (Reserva reserva) throws SQLException {
-        Connection connection = DataBaseConnection.getDataBaseConnection();
+        Connection connection = null;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Collection <Horario> collection = new ArrayList<>();

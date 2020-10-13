@@ -4,15 +4,16 @@ import com.rethinkdb.RethinkDB;
 import com.rethinkdb.net.Connection;
 
 public class RethinkDBConnectionFactory {
-	private String host;
+	private static String host;
+	private static int port;
 
-	public RethinkDBConnectionFactory(String host) {
+	public RethinkDBConnectionFactory(String host, int port) {
 		this.host = host;
+		this.port = port;
 	}
-	
-	public Connection createConnection(){
-		return RethinkDB.r.connection().hostname(host).connect();
+
+	public static Connection createConnection(){
+		System.out.println(host + " " + port);
+		return RethinkDB.r.connection().hostname(host).port(port).connect();
 	}
-	
-	
 }

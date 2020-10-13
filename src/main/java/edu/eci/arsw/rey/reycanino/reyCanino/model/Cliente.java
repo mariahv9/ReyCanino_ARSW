@@ -4,8 +4,7 @@ public class Cliente {
 
 	String nombreMascota, razaMascota, telefono, correo, id;
 
-	public Cliente() {
-	}
+	public Cliente() { }
 
 	public String getNombreMascota() {
 		return nombreMascota;
@@ -46,5 +45,4 @@ public class Cliente {
 	public void setId(String id) {
 		this.id = id;
 	}
-
 }

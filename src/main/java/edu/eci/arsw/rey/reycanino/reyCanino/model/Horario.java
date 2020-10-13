@@ -6,8 +6,7 @@ public class Horario {
 	Integer day, service, petshop, id;
 	Time timeStart, timeFinal;
 
-	public Horario() {
-	}
+	public Horario() { }
 
 	public Integer getId() {
 		return id;
