@@ -33,7 +33,7 @@ public class ConnectionRMQ {
     void sendMessage(String message) {
         try {
             channel.basicPublish("", ConfigurationRMQ.QUEUE_NAME, null, message.getBytes());
-            System.out.println("Sent message '" + message + "'");
+            System.out.println("Reserva Enviada '" + message + "'");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class ConnectionRMQ {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println("Message Received! ->  " + message + "(" + envelope.getRoutingKey() + ", " + envelope.getDeliveryTag() + ")");
+                System.out.println("Su reserva se ha enviado! Revise su correo ->  " + message + "(" + envelope.getRoutingKey() + ", " + envelope.getDeliveryTag() + ")");
             }
         };
         try {
