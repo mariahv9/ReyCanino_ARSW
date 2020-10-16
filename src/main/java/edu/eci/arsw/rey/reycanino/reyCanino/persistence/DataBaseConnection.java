@@ -1,33 +1,42 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.persistence;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.rethinkdb.RethinkDB;
 import com.rethinkdb.net.Connection;
-import com.rethinkdb.net.Cursor;
 import edu.eci.arsw.rey.reycanino.reyCanino.db.RethinkDBConnectionFactory;
-import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
-import edu.eci.arsw.rey.reycanino.reyCanino.model.TiendaCaninaPrueba;
+import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
 
 public class DataBaseConnection {
-    static RethinkDB r = RethinkDB.r;
-    static Connection connection;
+	static RethinkDB r = RethinkDB.r;
+	static Connection connection;
 
-    public static List<TiendaCaninaPrueba> disponibilidad (Reserva reserva){
-        connection = RethinkDBConnectionFactory.createConnection();
-        Cursor<TiendaCaninaPrueba> c =  r.db("ReyCanino").table("TIENDA_CANINA")
-        		.filter(tienda -> tienda.getField("horarios"))
-                .run(connection, TiendaCaninaPrueba.class);
-        List<TiendaCaninaPrueba> lista = new ArrayList<TiendaCaninaPrueba>();
-        System.out.println();
-        
-        while (c.hasNext()) {
-			TiendaCaninaPrueba tienda = c.next();
-			lista.add(tienda);
-		}
-    
-        return lista;
-    }
+	public static List<Horario> disponibilidad(Horario horarioConsulta) {
+		String[] servicios = { "Peluqueria", "Paseo" };
+		int a1, a2, m1, m2, d1, d2;
+		Calendar c = Calendar.getInstance();
+		c.setTime(horarioConsulta.getFechaConsulta());
+		a1 = c.get(Calendar.YEAR);
+		m1 = c.get(Calendar.MONTH) + 1;
+		d1 = c.get(Calendar.DAY_OF_MONTH);
+		c.add(Calendar.DAY_OF_YEAR, 1);
+		a2 = c.get(Calendar.YEAR);
+		m2 = c.get(Calendar.MONTH) + 1;
+		d2 = c.get(Calendar.DAY_OF_MONTH);
+
+		connection = RethinkDBConnectionFactory.createConnection();
+
+		ArrayList<Horario> query = r.db("ReyCanino").table("HORARIO")
+				.filter(horario -> horario.getField("tiendaCanina").eq(horarioConsulta.getTiendaCanina()))
+				.filter(horario -> horario.getField("servicio")
+						.eq(servicios[Integer.parseInt(horarioConsulta.getServicio()) - 1]))
+				.filter(horario -> horario.getField("reserva").eq(null))
+				.filter(horario -> horario.g("fi").during(r.time(a1, m1, d1, "Z"), r.time(a2, m2, d2, "Z")))
+				.orderBy("fi").run(connection, Horario.class);
+
+		return query;
+	}
 
 }

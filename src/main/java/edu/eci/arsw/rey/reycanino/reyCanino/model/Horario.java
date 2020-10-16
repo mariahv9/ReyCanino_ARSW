@@ -1,12 +1,31 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.model;
 
-import java.sql.Time;
+import java.time.OffsetDateTime;
+import java.util.Date;
 
 public class Horario {
-	String day, service, petshop, id;
-	Time timeStart, timeFinal;
+	String servicio, id, tiendaCanina;
+	OffsetDateTime ff, fi;
+	Date fechaConsulta;
+	Reserva reserva;
 
-	public Horario() { }
+	public Horario(String servicio, String id, OffsetDateTime ff, OffsetDateTime fi, Reserva reserva,
+			String tiendaCanina) {
+		this.servicio = servicio;
+		this.id = id;
+		this.ff = ff;
+		this.fi = fi;
+		this.reserva = reserva;
+		this.tiendaCanina = tiendaCanina;
+	}
+
+	public Date getFechaConsulta() {
+		return fechaConsulta;
+	}
+
+	public void setFechaConsulta(Date fechaConsulta) {
+		this.fechaConsulta = fechaConsulta;
+	}
 
 	public String getId() {
 		return id;
@@ -16,43 +35,53 @@ public class Horario {
 		this.id = id;
 	}
 
-	public String getDay() {
-		return day;
+	public String getTiendaCanina() {
+		return tiendaCanina;
 	}
 
-	public void setDay(String day) {
-		this.day = day;
+	public void setTiendaCanina(String tiendaCanina) {
+		this.tiendaCanina = tiendaCanina;
 	}
 
-	public String getService() {
-		return service;
+	public Horario() {
 	}
 
-	public void setService(String service) {
-		this.service = service;
+	public OffsetDateTime getFf() {
+		return ff;
 	}
 
-	public String getPetshop() {
-		return petshop;
+	public void setFf(OffsetDateTime ff) {
+		this.ff = ff;
 	}
 
-	public void setPetshop(String petshop) {
-		this.petshop = petshop;
+	public OffsetDateTime getFi() {
+		return fi;
 	}
 
-	public Time getTimeStart() {
-		return timeStart;
+	public void setFi(OffsetDateTime fi) {
+		this.fi = fi;
 	}
 
-	public void setTimeStart(Time timeStart) {
-		this.timeStart = timeStart;
+	public String getServicio() {
+		return servicio;
 	}
 
-	public Time getTimeFinal() {
-		return timeFinal;
+	public void setServicio(String servicio) {
+		this.servicio = servicio;
 	}
 
-	public void setTimeFinal(Time timeFinal) {
-		this.timeFinal = timeFinal;
+	public Reserva getReserva() {
+		return reserva;
 	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
+	@Override
+	public String toString() {
+		return "Horario [servicio=" + servicio + ", id=" + id + ", ff=" + ff + ", fi=" + fi + ", fechaConsulta="
+				+ fechaConsulta + ", reserva=" + reserva + ", tiendaCanina=" + tiendaCanina + "]";
+	}
+
 }

@@ -52,14 +52,11 @@ var api = (function() {
         let newDate = new Date(valores[0], parseInt(valores[1], 10) - 1, valores[2])
 
         let param = {
-            fecha: newDate,
-            horario: {
-                service: servicio,
-                petshop: tienda,
-            }
+            fechaConsulta: newDate,
+            servicio: servicio,
+			tiendaCanina: tienda
         }
 
-        console.log(JSON.stringify(param))
         $.ajax({
             data: JSON.stringify(param),
             contentType: "application/json",

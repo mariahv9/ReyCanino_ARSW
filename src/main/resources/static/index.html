@@ -353,7 +353,7 @@
 							<br>
 							<p>
 								<input name="email" type="text" id="email" placeholder="Email">
-							</p>
+							</p>							
 							<br>
 							<p>
 								<input name="petName" type="text" id="petName" placeholder="Nombre peludo">
@@ -386,19 +386,29 @@
 		        				<h2>Disponibilidad de horarios en el día:</h2>
         					</div>
         				</div>
-						<table class="table" id="table">
-							<thead>
-							<tr>
-								<th scope="row">Hora</th>
-								<th scope="row">Reserva</th>
-							</tr>
-							</thead>
-							<tbody id="filas" ></tbody>
-						</table>
+        			
+        				
+								<table class="table" id="table" style="display:none">
+									<thead>
+									<tr>
+										<th scope="row">Hora</th>
+										<th scope="row">Reserva</th>
+									</tr>
+									</thead>
+									<tbody id="filas" ></tbody>
+								</table>
+        				
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		
+			<div class="row" id="noHorarios" style="display:none">
+		        			<div class="heading-section col-md-12 text-center">
+		        				<h2>No hay horarios disponibles, consulta otra fecha</h2>
+        					</div>
+        				</div>
 		<div class="row">
 			<div class=" col-md-12 text-center" id="atras">
 				<button type="button" id="back"   onclick="view.showPrincipal()">Atrás</button>

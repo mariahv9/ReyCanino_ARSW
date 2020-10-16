@@ -1,7 +1,7 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.api;
 
 import edu.eci.arsw.rey.reycanino.reyCanino.db.ReservaChangesListener;
-import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
+import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
 import edu.eci.arsw.rey.reycanino.reyCanino.service.ReyCaninoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,10 +26,10 @@ public class APIController {
     ReservaChangesListener reservaChangesListener;
 
     @RequestMapping(value = "/consultar", method = RequestMethod.POST)
-    public ResponseEntity<?> consultsAvailableDates (@Valid @RequestBody Reserva reserva){
+    public ResponseEntity<?> consultsAvailableDates (@Valid @RequestBody Horario horario){
         try {
-            //return new ResponseEntity<>(reservaChangesListener.pushChangestoWebSocket(reserva), HttpStatus.ACCEPTED);
-            return new ResponseEntity<>(serviceR.consultsAvailable(reserva), HttpStatus.ACCEPTED);
+            //reservaChangesListener.pushChangestoWebSocket(horario);
+            return new ResponseEntity<>(serviceR.consultsAvailable(horario), HttpStatus.ACCEPTED);
         }catch (Exception e){
             Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -37,9 +37,9 @@ public class APIController {
     }
     
     @RequestMapping(value = "/reservar", method = RequestMethod.POST)
-    public ResponseEntity<?> reservar (@Valid @RequestBody Reserva reserva) {
+    public ResponseEntity<?> reservar (@Valid @RequestBody Horario horario) {
         try {
-            String codigo = serviceR.reservar(reserva);
+            String codigo = serviceR.reservar(horario);
             return new ResponseEntity<>(codigo, HttpStatus.OK);
         } catch (Exception e) {
             Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);

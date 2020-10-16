@@ -1,14 +1,17 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.db;
 
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
-import org.mortbay.log.Log;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import com.rethinkdb.RethinkDB;
 import com.rethinkdb.net.Cursor;
-import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
 
 @Service
 public class ReservaChangesListener {
@@ -22,39 +25,41 @@ public class ReservaChangesListener {
 	private static RethinkDB r = RethinkDB.r; 
 	
 	@Async
-	public Cursor pushChangestoWebSocket(Reserva reserva) {
-//		Cursor<Reserva> cursor =  r.db("ReyCanino").table("RESERVA").changes()
-//				.getField("new_reserva")
-//				.run(connectionFactory.createConnection(), Reserva.class);
-		Cursor c = r.db("ReyCanino").table("HORARIO")
-				.filter(servicio -> servicio.getField("id_servicio").eq("1"))
-				.filter(servicio -> servicio.getField("id_tienda_canina").eq("1"))
-				.filter(servicio -> servicio.getField("dia").eq("5"))
-				.outerJoin((r.db("ReyCanino").table("RESERVA")
-								.eqJoin("horario", r.db("ReyCanino").table("HORARIO"))
-								.zip()
-								.filter(horario -> horario.getField("id_servicio").eq("1"))
-								.filter(horario -> horario.getField("id_tienda_canina").eq("1"))
-								.filter(horario -> horario.getField("fecha").eq(r.time(2020, 9, 26, "Z")))
-								.pluck("horario")),
-						(horario_row,reserva_row)->
-								horario_row.g("id")
-										.eq(reserva_row.g("horario"))
-										.or(reserva_row.hasFields("horario").not())
-				)
-				.zip()
-				.filter(horario -> horario.hasFields("horario").not())
+	public void pushChangestoWebSocket(Horario horarioConsulta) {
+		String[] servicios = {"Peluqueria", "Paseo"};
+    	int a1, a2, m1, m2, d1, d2;
+    	Calendar c = Calendar.getInstance();
+    	c.setTime(horarioConsulta.getFechaConsulta());
+    	a1 = c.get(Calendar.YEAR);
+    	m1 = c.get(Calendar.MONTH) + 1;
+    	d1 = c.get(Calendar.DAY_OF_MONTH);
+    	c.add(Calendar.DAY_OF_YEAR, 1);
+    	a2 = c.get(Calendar.YEAR);
+    	m2 = c.get(Calendar.MONTH) + 1;
+    	d2 = c.get(Calendar.DAY_OF_MONTH);
+        
+    	System.out.println(horarioConsulta.getTiendaCanina());
+    	System.out.println(servicios[Integer.parseInt(horarioConsulta.getServicio()) - 1]);
+    	System.out.println(a1+" " +m1+" " + d1+" hasta " +a2+" " + m2+" " + d2);
+		Cursor<Horario> query =  r.db("ReyCanino").table("HORARIO")
 				.changes()
-				.run(connectionFactory.createConnection());
+				.filter(horario -> horario.getField("tiendaCanina").eq(horarioConsulta.getTiendaCanina()))
+				.filter(horario -> horario.getField("servicio").eq(servicios[Integer.parseInt(horarioConsulta.getServicio()) - 1]))
+				.filter(horario -> horario.getField("reserva").eq(null))
+				.filter(horario -> horario.g("fi").during(
+						r.time(a1, m1, d1, "Z"), r.time(a2, m2, d2, "Z"))
+						)
+				.run(connectionFactory.createConnection(), Horario.class);
 		
-		for (Object o : c) {
-			System.out.println(o);			
+		List<Horario> lista = new ArrayList<Horario>();
+		
+		while (query.hasNext()) {
+        	Horario tienda = query.next();
+			lista.add(tienda);
+			System.out.println(tienda);
 		}
-		while(c.hasNext()) {
-			Object horario = c.next();
-			Log.info("new horario:{}", horario);
-//			webSocket.convertAndSend("/topic/reserva",reserva);
-		}
-		return c;
+		
+		webSocket.convertAndSend("/topic/reserva",lista);
+		
 	}
 }
