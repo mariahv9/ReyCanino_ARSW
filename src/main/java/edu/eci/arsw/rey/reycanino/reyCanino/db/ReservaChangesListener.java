@@ -26,8 +26,7 @@ public class ReservaChangesListener {
 //		Cursor<Reserva> cursor =  r.db("ReyCanino").table("RESERVA").changes()
 //				.getField("new_reserva")
 //				.run(connectionFactory.createConnection(), Reserva.class);
-		Cursor<Horario> c = r.db("ReyCanino").table("HORARIO")
-				.changes()
+		Cursor c = r.db("ReyCanino").table("HORARIO")
 				.filter(servicio -> servicio.getField("id_servicio").eq("1"))
 				.filter(servicio -> servicio.getField("id_tienda_canina").eq("1"))
 				.filter(servicio -> servicio.getField("dia").eq("5"))
@@ -45,11 +44,15 @@ public class ReservaChangesListener {
 				)
 				.zip()
 				.filter(horario -> horario.hasFields("horario").not())
-				.run(connectionFactory.createConnection(), Horario.class);
-
+				.changes()
+				.run(connectionFactory.createConnection());
+		
+		for (Object o : c) {
+			System.out.println(o);			
+		}
 		while(c.hasNext()) {
-			Horario horario = c.next();
-			Log.info("new horario:{}", Horario.class);
+			Object horario = c.next();
+			Log.info("new horario:{}", horario);
 //			webSocket.convertAndSend("/topic/reserva",reserva);
 		}
 		return c;

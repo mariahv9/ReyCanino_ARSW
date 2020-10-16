@@ -34,10 +34,10 @@ public class HorariosDAO {
             dateAux += (calendar.get(Calendar.DAY_OF_MONTH) > 9)?"":"0";
             dateAux += calendar.get(Calendar.DAY_OF_MONTH);
             preparedStatement.setString(count++, dateAux);
-            preparedStatement.setInt(count++, reserva.getHorario().getPetshop());
-            preparedStatement.setInt(count++, reserva.getHorario().getService());
-            preparedStatement.setInt(count++, reserva.getHorario().getService());
-            preparedStatement.setInt(count++, reserva.getHorario().getPetshop());
+            preparedStatement.setString(count++, reserva.getHorario().getPetshop());
+            preparedStatement.setString(count++, reserva.getHorario().getService());
+            preparedStatement.setString(count++, reserva.getHorario().getService());
+            preparedStatement.setString(count++, reserva.getHorario().getPetshop());
             preparedStatement.setString(count++, String.valueOf(calendar.get(Calendar.DAY_OF_WEEK)-1));
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
@@ -53,12 +53,12 @@ public class HorariosDAO {
 
     public static Horario getHorario(ResultSet resultSet) throws SQLException {
         Horario horario = new Horario();
-        horario.setDay(resultSet.getInt("dia"));
+        horario.setDay(resultSet.getString("dia"));
         horario.setTimeStart(resultSet.getTime("horaInicio"));
         horario.setTimeFinal(resultSet.getTime("horaFin"));
-        horario.setPetshop(resultSet.getInt("tienda_canina"));
-        horario.setId(resultSet.getInt("identificacion"));
-        horario.setService(resultSet.getInt("servicio"));
+        horario.setPetshop(resultSet.getString("tienda_canina"));
+        horario.setId(resultSet.getString("identificacion"));
+        horario.setService(resultSet.getString("servicio"));
         return horario;
     }
 }

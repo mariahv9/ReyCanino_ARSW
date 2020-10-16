@@ -48,7 +48,7 @@ public class ReservaDAO {
 				preparedStatement.setString(count++, reserva.getComentario());
 				preparedStatement.setString(count++, reserva.getIdentificador());
 				preparedStatement.setString(count++, reserva.getCliente().getId());
-				preparedStatement.setInt(count++, reserva.getHorario().getId());
+				preparedStatement.setString(count++, reserva.getHorario().getId());
 
 				preparedStatement.executeUpdate();
 

@@ -3,40 +3,40 @@ package edu.eci.arsw.rey.reycanino.reyCanino.model;
 import java.sql.Time;
 
 public class Horario {
-	Integer day, service, petshop, id;
+	String day, service, petshop, id;
 	Time timeStart, timeFinal;
 
 	public Horario() { }
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Integer getDay() {
+	public String getDay() {
 		return day;
 	}
 
-	public void setDay(Integer day) {
+	public void setDay(String day) {
 		this.day = day;
 	}
 
-	public Integer getService() {
+	public String getService() {
 		return service;
 	}
 
-	public void setService(Integer service) {
+	public void setService(String service) {
 		this.service = service;
 	}
 
-	public Integer getPetshop() {
+	public String getPetshop() {
 		return petshop;
 	}
 
-	public void setPetshop(Integer petshop) {
+	public void setPetshop(String petshop) {
 		this.petshop = petshop;
 	}
 

@@ -28,8 +28,8 @@ public class APIController {
     @RequestMapping(value = "/consultar", method = RequestMethod.POST)
     public ResponseEntity<?> consultsAvailableDates (@Valid @RequestBody Reserva reserva){
         try {
-            return new ResponseEntity<>(reservaChangesListener.pushChangestoWebSocket(reserva), HttpStatus.ACCEPTED);
-//            return new ResponseEntity<>(serviceR.consultsAvailable(reserva), HttpStatus.ACCEPTED);
+            //return new ResponseEntity<>(reservaChangesListener.pushChangestoWebSocket(reserva), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceR.consultsAvailable(reserva), HttpStatus.ACCEPTED);
         }catch (Exception e){
             Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
