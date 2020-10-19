@@ -1,23 +1,48 @@
 package edu.eci.arsw.rey.reycanino.reyCanino.model;
 
-import java.util.Date;
-
 public class Reserva {
+	String cliente, correo, mascota, comentario, telefono, raza;
 
-	Date fecha;
-	String comentario, identificador;
-	Horario horario;
-	Cliente cliente;
-
-	public Reserva() {
+	public Reserva(String cliente, String correo, String mascota, String comentario, String telefono, String raza) {
+		super();
+		this.cliente = cliente;
+		this.correo = correo;
+		this.mascota = mascota;
+		this.comentario = comentario;
+		this.telefono = telefono;
+		this.raza = raza;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public String getRaza() {
+		return raza;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setRaza(String raza) {
+		this.raza = raza;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getMascota() {
+		return mascota;
+	}
+
+	public void setMascota(String mascota) {
+		this.mascota = mascota;
 	}
 
 	public String getComentario() {
@@ -28,27 +53,17 @@ public class Reserva {
 		this.comentario = comentario;
 	}
 
-	public String getIdentificador() {
-		return identificador;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Horario getHorario() {
-		return horario;
-	}
-
-	public void setHorario(Horario horario) {
-		this.horario = horario;
+	@Override
+	public String toString() {
+		return "Reserva [cliente=" + cliente + ", correo=" + correo + ", mascota=" + mascota + ", comentario="
+				+ comentario + ", telefono=" + telefono + "]";
 	}
 }

@@ -8,12 +8,11 @@ public class RethinkDBConnectionFactory {
 	private static int port;
 
 	public RethinkDBConnectionFactory(String host, int port) {
-		this.host = host;
-		this.port = port;
+		RethinkDBConnectionFactory.host = host;
+		RethinkDBConnectionFactory.port = port;
 	}
 
 	public static Connection createConnection(){
-		System.out.println(host + " " + port);
 		return RethinkDB.r.connection().hostname(host).port(port).connect();
 	}
 }

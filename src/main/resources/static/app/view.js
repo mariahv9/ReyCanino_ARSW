@@ -12,12 +12,26 @@ var view = (function() {
 		hideShops();
 		hideTable();
 		principal.style.display = "block";
-
+		quitarColores();
 		$('html, body').animate({
 			scrollTop: $("#sTop").offset().top
 		},
 			500);
-
+	}
+	
+	function quitarColores() {
+		let name = document.getElementById("name");
+		let email = document.getElementById("email");
+		let petName = document.getElementById("petName");
+		let raza = document.getElementById("breed");
+		let telefono = document.getElementById("tel");
+		let comentario = document.getElementById("comment");
+		name.style.borderColor = "";
+		email.style.borderColor = "";
+		petName.style.borderColor = "";
+		raza.style.borderColor = "";
+		telefono.style.borderColor = "";
+		comentario.style.borderColor = "";
 	}
 
 	function hideData() {
@@ -104,6 +118,7 @@ var view = (function() {
 		showQuery: showQuery,
 		hideQuery: hideQuery,
 		showPrincipal: showPrincipal,
-		showTable:showTable
+		showTable:showTable,
+		quitarColores:quitarColores
 	}
 })();
