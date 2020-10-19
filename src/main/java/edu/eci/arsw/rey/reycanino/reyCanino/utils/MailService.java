@@ -21,6 +21,7 @@ public class MailService {
     private JavaMailSender mailSender;
 
     public void sendConfirmationEmail(Horario horario) {
+        System.out.println(horario);
         MimeMessagePreparator preparator = null;
         try {
             final TiendaCanina shop = DataBaseConnection.buscarTiendaCanina(horario.getTiendaCanina());

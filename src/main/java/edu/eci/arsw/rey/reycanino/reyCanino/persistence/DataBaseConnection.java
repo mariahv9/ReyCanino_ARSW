@@ -38,9 +38,10 @@ public class DataBaseConnection {
 	}
 
 	public static TiendaCanina buscarTiendaCanina(String id){
+		System.out.println(id);
 		TiendaCanina tiendaCanina = null;
 		Cursor<TiendaCanina> query = r.db("ReyCanino").table("TIENDA_CANINA")
-				.filter(tienda -> tienda.getField("identificacion").eq("\""+id+"\""))
+				.filter(tienda -> tienda.getField("identificacion").eq(id))
 				.run(connection, TiendaCanina.class);
 		while (query.hasNext()) {
 			tiendaCanina = query.next();

@@ -67,7 +67,6 @@ public class APIController {
     @RequestMapping(value = "/mail", method = RequestMethod.POST)
     public ResponseEntity<?> receiveMail (@Valid @RequestBody Horario horario) {
         try {
-
 //            String codigo = serviceR.confirmar(horario);
 //            return new ResponseEntity<>(codigo, HttpStatus.OK);
 //            System.out.println(serviceR.reservar(horario));
