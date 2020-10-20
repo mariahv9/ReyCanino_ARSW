@@ -47,7 +47,7 @@ public class MailService {
 					int anio = horarioDB.getFi().getYear();
 					int hora = horarioDB.getFi().getHour();
 					int minuto = horarioDB.getFi().getMinute();
-					String min = (minuto > 9)? Integer.toString(minuto) :"0" + minuto; 
+					String min = (minuto > 9) ? Integer.toString(minuto) : "0" + minuto;
 
 					dateAux = dia + "/" + mes + "/" + anio + " - " + hora + ":" + min;
 
@@ -139,4 +139,5 @@ public class MailService {
 		}
 		this.mailSender.send(preparator);
 	}
+
 }

@@ -55,6 +55,7 @@ public class DataBaseConnection {
 				.filter(tienda -> tienda.getField("identificacion").eq(id)).run(connection, TiendaCanina.class);
 
 		TiendaCanina tiendaCanina = null;
+
 		while (query.hasNext()) {
 			tiendaCanina = query.next();
 		}

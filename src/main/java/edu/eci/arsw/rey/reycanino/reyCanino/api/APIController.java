@@ -64,5 +64,4 @@ public class APIController {
 			return new ModelAndView("redirect:/incorrecta.html");
 		}
 	}
-
 }
