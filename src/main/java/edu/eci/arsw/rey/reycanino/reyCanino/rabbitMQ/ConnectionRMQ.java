@@ -10,16 +10,14 @@ public class ConnectionRMQ {
     private static Channel channel;
 
     public ConnectionRMQ() {
-        if (factory == null){
-            factory = new ConnectionFactory();
-            factory.setHost(ConfigurationRMQ.RABBITMQ_SERVER);
-            factory.setPort(ConfigurationRMQ.RABBITMQ_PORT);
-            factory.setUsername(ConfigurationRMQ.USERNAME);
-            factory.setPassword(ConfigurationRMQ.PASSWORD);
-        }
+        factory = new ConnectionFactory();
+        factory.setHost(ConfigurationRMQ.RABBITMQ_SERVER);
+        factory.setPort(ConfigurationRMQ.RABBITMQ_PORT);
+        factory.setUsername(ConfigurationRMQ.USERNAME);
+        factory.setPassword(ConfigurationRMQ.PASSWORD);
     }
 
-    static Channel create() {
+    public static Channel create() {
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();
@@ -32,14 +30,6 @@ public class ConnectionRMQ {
         return channel;
     }
 
-    void sendMessage(String message) {
-        try {
-            channel.basicPublish("", ConfigurationRMQ.QUEUE_NAME, null, message.getBytes());
-            System.out.println("Reserva Enviada '" + message + "'");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     void close() {
         try {

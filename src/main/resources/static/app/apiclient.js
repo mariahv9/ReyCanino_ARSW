@@ -31,7 +31,7 @@ var api = (function() {
 	    let codigo = response.substring (9, 17);
 		Swal.fire({
 			title: "Creacion correcta",
-			text: 'Se ha creado su reserva con código ' + codigo,
+			text: 'Revisa tu correo para confirmar la reserva.',
 			icon: 'success',
 			confirmButtonColor: '#3085d6',
 			confirmButtonText: 'Ok!'
