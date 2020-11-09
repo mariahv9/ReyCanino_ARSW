@@ -17,11 +17,10 @@ import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
 public class WebSocketController {
 	
     @MessageMapping("/cambios")
-    @SendTo("/topic/cambios")
-    public List<Horario> cambioConsulta(@DestinationVariable List<Horario> horarios) {
+    @SendTo("/topic/changes")
+    public List<Horario> cambioConsulta(@DestinationVariable Horario horario) {
         System.out.println("se recibieron cambios");
-        for (Horario h : horarios)
-        	System.out.println(h);
+        System.out.println(horario);
         return null;
     }
 }

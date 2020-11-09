@@ -42,7 +42,6 @@ public class DataBaseConnection {
 				.filter(horario -> horario.getField("tiendaCanina").eq(horarioConsulta.getTiendaCanina()))
 				.filter(horario -> horario.getField("servicio")
 						.eq(servicios[Integer.parseInt(horarioConsulta.getServicio()) - 1]))
-				.filter(horario -> horario.getField("reserva").eq(null))
 				.filter(horario -> horario.g("fi").during(r.time(a1, m1, d1, "Z"), r.time(a2, m2, d2, "Z")))
 				.orderBy("fi").run(connection, Horario.class);
 		return query;

@@ -57,7 +57,9 @@ var api = (function() {
             url: '/reyCanino/consultar',
             type: 'post',
             success: function(response) {
-                app.mostrarTabla(response)
+				app.asignData(response);
+                app.mostrarTabla();
+				app.connect();				
             }
         });
 	}

@@ -71,7 +71,7 @@ var app = (function() {
 	}
 
 	function reservarShop(horario) {
-	    let name = document.getElementById("name").value;
+		let name = document.getElementById("name").value;
 		let date = document.getElementById("fechaShop").value
 		let shop = document.getElementById("shopSelected").value
 		let email = document.getElementById("email").value
@@ -82,13 +82,13 @@ var app = (function() {
 		let valid = true
 		valid = !validarFecha(date)
 		valid = valid && validarDatos()
-        if(valid){
-            api.reserva(name, serviceSelected, shop, email, petName, raza, telefono, horario, comentario)
-        }
+		if (valid) {
+			api.reserva(name, serviceSelected, shop, email, petName, raza, telefono, horario, comentario)
+		}
 	}
 
 	function reservarService(horario) {
-	    let name = document.getElementById("name").value;
+		let name = document.getElementById("name").value;
 		let date = document.getElementById("fechaServicio").value
 		let service = document.getElementById("serviceSelected").value
 		let email = document.getElementById("email").value
@@ -99,7 +99,7 @@ var app = (function() {
 		let valid = true
 		valid = !validarFecha(date)
 		valid = valid && validarDatos()
-		if(valid){
+		if (valid) {
 			api.reserva(name, service, shopSelected, email, petName, raza, telefono, horario, comentario)
 		}
 	}
@@ -126,39 +126,97 @@ var app = (function() {
 		}
 	}
 
-	function mostrarTabla(data) {
+	var displayedData = new Map();
+	
+	function asignData(data){
+		data.map(function(element){
+			displayedData.set(element.id,element);
+		})		
+	}
+	
+	function replaceData(data){
+		data.map(function(element){
+			displayedData.set(element.id,element);
+		})
+	}
+
+	function mostrarTabla() {
 		let tabla = document.getElementById("tabla");
 		let table = document.getElementById("table");
 		let heading = document.getElementById("noHorarios");
 		tabla.style.display = "block";
 		heading.style.display = "none";
 		table.style.display = "none";
-		if(data.length > 0){
+		if (displayedData.size > 0) {
 			table.style.display = "";
 			$("#filas").empty();
-			data.map(function(element) {
-				let onclick = "";
-				let fechaIni = element.fi.split("T")[1];
-				fechaIni = fechaIni.substring(0, fechaIni.length - 9);
-				let fechaFin = element.ff.split("T")[1];
-				fechaFin = fechaFin.substring(0, fechaFin.length - 9);
-				if (enviaServicio) {
-					onclick = "app.reservarService(\"" + element.id + "\")";
-				}
-				else {
-					onclick = "app.reservarShop(\"" + element.id + "\")";
-				}
+			displayedData.forEach(function(element, clave) {
+				console.log(element, clave);
+				if(element.reserva != null){
+					let onclick = "";
+					let fechaIni = element.fi.split("T")[1];
+					fechaIni = fechaIni.substring(0, fechaIni.length - 4);
+					let fechaFin = element.ff.split("T")[1];
+					fechaFin = fechaFin.substring(0, fechaFin.length - 4);
+					if (enviaServicio) {
+						onclick = "app.reservarService(\"" + element.id + "\")";
+					}
+					else {
+						onclick = "app.reservarShop(\"" + element.id + "\")";
+					}
 	
-				let boton = "<input type='button' value='reservar' onclick='" + onclick + "'></input>";
-				let markup = "<tr> <td>" + fechaIni + " - " + fechaFin + "</td> <td> " + boton + "</td> </tr>";
-				$("#filas").append(markup)
-			});			
+					let boton = "<input type='button' value='reservar' onclick='" + onclick + "'></input>";
+					let markup = "<tr> <td>" + fechaIni + " - " + fechaFin + "</td> <td> " + boton + "</td> </tr>";
+					$("#filas").append(markup)
+				}
+			});
 		}
-		else
-		{
-			heading.style.display = "block";	
+		else {
+			heading.style.display = "block";
 		}
-		
+
+	}
+
+	function subChanges() {
+		stompClient.subscribe('/topic/changes', function(event) {
+			let data = JSON.parse(event.body);
+			alert("CAMBIOS CAMBIOS!!!");
+			console.log(data);
+			mostrarTabla(data);
+		}, { id: "changes" });
+	}
+
+	var stompClient = null
+	function connect() {
+		console.log("Connecting to WS...");
+		var socket = new SockJS('/stompendpoint');
+		stompClient = Stomp.over(socket);
+		stompClient.connect({}, function(frame) {
+			console.log('Connected: ' + frame);
+			subChanges();
+		}, onConnectError);
+	}
+
+	function onConnectError(message) {
+		Swal.fire({
+			title: 'Whoops!',
+			text: "¡Hubo un problema para conectar al servidor!",
+			icon: 'error',
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'Refrescar!',
+			showCancelButton: true,
+			cancelButtonText: 'Salir'
+		}).then((result) => {
+			if (result.value) {
+				location.reload();
+			} else if (result.dismiss === Swal.DismissReason.cancel) {
+				location.assign("../index.html");
+			}
+		})
+	}
+
+	function disconnect() {
+		stompClient.disconnect();
 	}
 
 	return {
@@ -172,6 +230,9 @@ var app = (function() {
 		},
 		consultarServicio: consultarServicio,
 		consultarTienda: consultarTienda,
-		mostrarTabla: mostrarTabla
+		mostrarTabla: mostrarTabla,
+		connect: connect,
+		disconnect: disconnect,
+		asignData:asignData
 	}
 })();

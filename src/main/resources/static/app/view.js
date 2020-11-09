@@ -17,6 +17,7 @@ var view = (function() {
 			scrollTop: $("#sTop").offset().top
 		},
 			500);
+		app.disconnect();
 	}
 	
 	function quitarColores() {
