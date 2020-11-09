@@ -38,4 +38,20 @@ public class ReyCaninoService {
 		String reservaMessage = sender.confirmar(reserva);
 		return reservaMessage;
 	}
+
+	public Horario consultarReserva (String id) throws SQLException {
+		Horario horario = dbConnection.consultarReserva(id);
+		return horario;
+	}
+
+	public String cancelarReserva (String id) throws SQLException {
+		Horario horario = dbConnection.consultarReserva(id);
+		if (horario != null){
+			if (horario.getReserva() != null && horario.getFi().isAfter(OffsetDateTime.now())){
+				dbConnection.cancelarReserva(id);
+				return "Éxito";
+			}
+		}
+		return "Fallo";
+	}
 }

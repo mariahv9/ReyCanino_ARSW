@@ -148,18 +148,26 @@ var app = (function() {
 				else {
 					onclick = "app.reservarShop(\"" + element.id + "\")";
 				}
-	
 				let boton = "<input type='button' value='reservar' onclick='" + onclick + "'></input>";
 				let markup = "<tr> <td>" + fechaIni + " - " + fechaFin + "</td> <td> " + boton + "</td> </tr>";
 				$("#filas").append(markup)
-			});			
+			});
 		}
 		else
 		{
-			heading.style.display = "block";	
+			heading.style.display = "block";
 		}
-		
 	}
+
+	function consultarReserva() {
+        let codigo = document.getElementById("codigo").value;
+        api.consultarReserva(codigo);
+    }
+
+    function cancelarReserva(){
+        let codigo = document.getElementById("codigo1").value;
+        api.cancelarReserva(codigo);
+    }
 
 	return {
 		reservarShop: reservarShop,
@@ -172,6 +180,8 @@ var app = (function() {
 		},
 		consultarServicio: consultarServicio,
 		consultarTienda: consultarTienda,
-		mostrarTabla: mostrarTabla
+		mostrarTabla: mostrarTabla,
+		consultarReserva: consultarReserva,
+		cancelarReserva: cancelarReserva
 	}
 })();

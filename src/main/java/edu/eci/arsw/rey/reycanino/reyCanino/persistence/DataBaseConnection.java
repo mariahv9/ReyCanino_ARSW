@@ -85,9 +85,8 @@ public class DataBaseConnection {
 	}
 
 	public void actualizarHorario(Horario horario) {
-
 		connection = RethinkDBConnectionFactory.createConnection();
-		r.db("ReyCanino").table("HORARIO").get(horario.getId()).update(r.hashMap("reserva",
+		r.db("ReyCanino").table("HORARIO").get(horario.getId()).update(r.hashMap("reserva", //update null horarrio
 				r.hashMap("cliente", horario.getReserva().getCliente()).with("correo", horario.getReserva().getCorreo())
 						.with("mascota", horario.getReserva().getMascota())
 						.with("comentario", horario.getReserva().getComentario())
@@ -102,26 +101,38 @@ public class DataBaseConnection {
 		connection = RethinkDBConnectionFactory.createConnection();
 
 		HashMap<String, Object> insert = r.db("ReyCanino").table("RESERVA")
-				.insert(r.array(r.hashMap("fechaLimite", nowDateTime).with("cliente", horario.getReserva().getCliente())
+				.insert(r.array(r.hashMap("fechaLimite", nowDateTime)
+						.with("cliente", horario.getReserva().getCliente())
 						.with("correo", horario.getReserva().getCorreo())
 						.with("mascota", horario.getReserva().getMascota())
 						.with("comentario", horario.getReserva().getComentario())
 						.with("telefono", horario.getReserva().getTelefono())
-						.with("raza", horario.getReserva().getRaza()).with("idHorario", horario.getId())))
+						.with("raza", horario.getReserva().getRaza())
+						.with("idHorario", horario.getId())))
 				.run(connection);
-
 		ArrayList<String> llaves = (ArrayList<String>) insert.get("generated_keys");
-
 		horario.getReserva().setId(llaves.get(0));
+		return horario;
+	}
 
+	public Horario consultarReserva(String id) {
+		connection = RethinkDBConnectionFactory.createConnection();
+		Cursor<Horario> c = r.db("ReyCanino").table("HORARIO").filter(res -> res.getField("id").eq(id)).run(connection, Horario.class);
+		Horario horario = null;
+		for (Horario o : c) {
+			horario = o;
+		}
 		return horario;
 	}
 
 	public void eliminarReserva(Reserva reserva) {
 		connection = RethinkDBConnectionFactory.createConnection();
-
 		r.db("ReyCanino").table("RESERVA").get(reserva.getId()).delete().run(connection);
-
 	}
 
+	public void cancelarReserva(String id) {
+		connection = RethinkDBConnectionFactory.createConnection();
+		r.db("ReyCanino").table("HORARIO").filter(res -> res.getField("id").eq(id)).update(
+				r.hashMap("reserva", null)).run(connection);
+	}
 }
