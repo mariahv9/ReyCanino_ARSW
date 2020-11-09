@@ -38,8 +38,8 @@ public class MailService {
 					message.setFrom("reycaninostore@gmail.com");
 					message.setSubject("¡Confirma tu reserva!");
 
-					String url = "http://localhost:8080/reyCanino/confirmar/";
-//					String url = "http://reycanino.herokuapp.com/reyCanino/confirmar/";
+//					String url = "http://localhost:8080/reyCanino/confirmar/";
+					String url = "http://reycanino.herokuapp.com/reyCanino/confirmar/";
 					url += horario.getReserva().getId();
 
 					String dateAux = "";
