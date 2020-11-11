@@ -56,7 +56,6 @@ public class ReceiverRMQ {
         	}else 
         		mailService.sendErrorConfirmationEmail(reserva);
         	dbConnection.eliminarReserva(reserva);
-        	
         }
     }
 

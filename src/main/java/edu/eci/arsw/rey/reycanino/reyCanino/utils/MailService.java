@@ -38,7 +38,7 @@ public class MailService {
 					message.setFrom("reycaninostore@gmail.com");
 					message.setSubject("¡Confirma tu reserva!");
 
-					String url = "http://localhost:8080/reyCanino/confirmar/";
+					String url = "http://reycanino.herokuapp.com/reyCanino/confirmar/";
 					url += horario.getReserva().getId();
 
 					String dateAux = "";
@@ -91,8 +91,9 @@ public class MailService {
 					int anio = horario.getFi().getYear();
 					int hora = horario.getFi().getHour();
 					int minuto = horario.getFi().getMinute();
+					String min = (minuto > 9) ? Integer.toString(minuto) : "0" + minuto;
 
-					dateAux = dia + "/" + mes + "/" + anio + " - " + hora + ":" + minuto;
+					dateAux = dia + "/" + mes + "/" + anio + " - " + hora + ":" + min;
 
 					VelocityContext velocityContext = new VelocityContext();
 					velocityContext.put("user", horario.getReserva().getCliente());

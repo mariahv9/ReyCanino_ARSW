@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.validation.Valid;
@@ -35,7 +34,6 @@ public class APIController {
 	@RequestMapping(value = "/consultar", method = RequestMethod.POST)
 	public ResponseEntity<?> consultsAvailableDates(@Valid @RequestBody Horario horario) {
 		try {
-			// reservaChangesListener.pushChangestoWebSocket(horario);
 			return new ResponseEntity<>(serviceR.consultsAvailable(horario), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
@@ -62,6 +60,28 @@ public class APIController {
 		} catch (Exception e) {
 			Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
 			return new ModelAndView("redirect:/incorrecta.html");
+		}
+	}
+
+	@RequestMapping(value = "/consultar/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> consultarReserva(@PathVariable() String id) {
+		try {
+			Horario horario = serviceR.consultarReserva(id);
+			return new ResponseEntity<>(horario, HttpStatus.OK);
+		} catch (Exception e) {
+			Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@RequestMapping(value = "/cancelar/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> cancelarReserva(@PathVariable() String id) {
+		try {
+			String reserva = serviceR.cancelarReserva(id);
+			return new ResponseEntity<>(reserva, HttpStatus.OK);
+		} catch (Exception e) {
+			Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 }

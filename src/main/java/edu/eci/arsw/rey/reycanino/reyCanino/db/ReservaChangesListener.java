@@ -15,16 +15,13 @@ public class ReservaChangesListener {
 
 	@Autowired
 	private SimpMessageSendingOperations webSocket;
-	
-	@Autowired
-	RethinkDBConnectionFactory dbConnection;
 
 	private static RethinkDB r = RethinkDB.r;
 
 	@Async
 	public void pushChangestoWebSocket() {
 		Cursor<Horario> query = r.db("ReyCanino").table("HORARIO").changes().getField("new_val")
-				.run(dbConnection.createConnection(), Horario.class);
+				.run(RethinkDBConnectionFactory.createConnection(), Horario.class);
 
 		while (query.hasNext()) {
 			Horario horario = query.next();

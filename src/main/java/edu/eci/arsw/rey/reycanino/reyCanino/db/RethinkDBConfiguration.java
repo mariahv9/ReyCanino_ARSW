@@ -8,8 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class RethinkDBConfiguration {
 
-	// public static String host = "ec2-34-235-155-214.compute-1.amazonaws.com";
-	public static String host = "localhost";
+	public static String host = "ec2-34-235-155-214.compute-1.amazonaws.com";
 	public static int port = 32769;
 
 	@Bean
