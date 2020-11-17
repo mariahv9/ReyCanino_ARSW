@@ -59,7 +59,7 @@ public class APIController {
 			return new ModelAndView("redirect:/correcta.html");
 		} catch (Exception e) {
 			Logger.getLogger(APIController.class.getName()).log(Level.SEVERE, null, e);
-			return new ModelAndView("redirect:/incorrecta.html");
+			return new ModelAndView("redirect:/fallida.html");
 		}
 	}
 

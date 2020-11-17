@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.rethinkdb.RethinkDB;
+import com.rethinkdb.net.Util;
 import com.rethinkdb.net.Connection;
 import com.rethinkdb.net.Cursor;
 import edu.eci.arsw.rey.reycanino.reyCanino.db.RethinkDBConnectionFactory;
@@ -43,8 +45,15 @@ public class DataBaseConnection {
 				.filter(horario -> horario.getField("servicio")
 						.eq(servicios[Integer.parseInt(horarioConsulta.getServicio()) - 1]))
 				.filter(horario -> horario.g("fi").during(r.time(a1, m1, d1, "Z"), r.time(a2, m2, d2, "Z")))
-				.orderBy("fi").run(connection, Horario.class);
-		return query;
+				.orderBy("fi")
+				.run(connection, Horario.class);
+		ArrayList<Horario> l = new ArrayList<Horario>();
+		
+		for (int i = 0; i < query.size(); i++) {
+			l.add(Util.convertToPojo(query.get(i),Optional.of(Horario.class)));
+		}
+
+		return l;
 	}
 
 	public TiendaCanina buscarTiendaCanina(String id) {

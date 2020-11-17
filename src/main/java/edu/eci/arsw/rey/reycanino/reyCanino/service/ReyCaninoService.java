@@ -5,7 +5,7 @@ import edu.eci.arsw.rey.reycanino.reyCanino.model.Horario;
 import edu.eci.arsw.rey.reycanino.reyCanino.model.Reserva;
 import edu.eci.arsw.rey.reycanino.reyCanino.persistence.DataBaseConnection;
 import edu.eci.arsw.rey.reycanino.reyCanino.rabbitMQ.SenderRMQ;
-
+import edu.eci.arsw.rey.reycanino.reyCanino.utils.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
@@ -21,8 +21,17 @@ public class ReyCaninoService {
 	@Autowired
 	DataBaseConnection dbConnection;
 
+	@Autowired 
+	CacheService cacheService;
+
 	public List<Horario> consultsAvailable(Horario horario) throws SQLException {
-		return dbConnection.disponibilidad(horario);
+		List<Horario> res = cacheService.getAll(horario);
+		if (res == null){
+			res = dbConnection.disponibilidad(horario);
+			if(res.size() > 0)
+				cacheService.addHorario(res);
+		}
+		return res;
 	}
 
 	public String reservar(Horario horario) throws SQLException {
@@ -33,6 +42,8 @@ public class ReyCaninoService {
 	public String confirmar(String id) throws SQLException, ReyCaninoException {
 		Reserva reserva = dbConnection.buscarReserva(id);
 		OffsetDateTime now = OffsetDateTime.now();
+		if (reserva == null)
+			throw new ReyCaninoException(ReyCaninoException.NO_EXISTE_RESERVA);
     	if(now.isBefore(reserva.getFechaLimite()))
     		throw new ReyCaninoException(ReyCaninoException.TIEMPO_EXPIRADO);
 		String reservaMessage = sender.confirmar(reserva);

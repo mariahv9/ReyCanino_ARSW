@@ -143,6 +143,7 @@ var app = (function () {
   }
 
   function consultarTienda() {
+    displayedData = new Map();
     enviaServicio = false;
     let date = document.getElementById("fechaShop").value;
     let tienda = document.getElementById("shopSelected").value;
@@ -155,6 +156,7 @@ var app = (function () {
 
   function consultarServicio() {
     enviaServicio = true;
+    displayedData = new Map();
     let date = document.getElementById("fechaServicio").value;
     let servicio = document.getElementById("serviceSelected").value;
     let valid = true;
@@ -195,6 +197,7 @@ var app = (function () {
     if (displayedData.size > 0) {
       table.style.display = "";
       $("#filas").empty();
+      let cont = 0;
       displayedData.forEach(function (element, clave) {
         if (element.reserva == null) {
           let onclick = "";
@@ -221,8 +224,12 @@ var app = (function () {
             boton +
             "</td> </tr>";
           $("#filas").append(markup);
+          cont++;
         }
       });
+      if (cont == 0) {
+        heading.style.display = "block";
+      }
     } else {
       heading.style.display = "block";
     }
@@ -273,6 +280,7 @@ var app = (function () {
   }
 
   function disconnect() {
+    displayedData = new Map();
     stompClient.disconnect();
   }
 
@@ -302,6 +310,6 @@ var app = (function () {
     disconnect: disconnect,
     asignData: asignData,
     consultarReserva: consultarReserva,
-    cancelarReserva: cancelarReserva
+    cancelarReserva: cancelarReserva,
   };
 })();
