@@ -6,9 +6,9 @@
 
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://reycanino.herokuapp.com/)
 
-![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.png)
-
 [![Deployed to AWS](https://github.com/JuanCe11/AREP-Taller-5/blob/master/BotonAWS.png)](http://ec2-3-86-26-165.compute-1.amazonaws.com:8080/)
+
+![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.png)
 
 ## Integrantes
 * Maria Fernanda Hernandez Vargas
