@@ -10,6 +10,8 @@
 
 ![Logo](https://github.com/mariahv9/ReyCanino_ARSW/blob/master/resources/Logo.png)
 
+[Test](https://github.com/mariahv9/ReyCaninoTest)
+
 ## Integrantes
 * Maria Fernanda Hernandez Vargas
 
